@@ -9,6 +9,7 @@ public class LibraryApp extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JTabbedPane tabbedPane = new JTabbedPane();
         tabbedPane.addTab("Books", new BookManagementPanel());
+        tabbedPane.addTab("Patrons", new PatronManagementPanel());
         add(tabbedPane);
     }
     public static void main(String[] args) {
