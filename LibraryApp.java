@@ -10,6 +10,7 @@ public class LibraryApp extends JFrame {
         JTabbedPane tabbedPane = new JTabbedPane();
         tabbedPane.addTab("Books", new BookManagementPanel());
         tabbedPane.addTab("Patrons", new PatronManagementPanel());
+        tabbedPane.addTab("Loans", new LoanManagementPanel());
         add(tabbedPane);
     }
     public static void main(String[] args) {
