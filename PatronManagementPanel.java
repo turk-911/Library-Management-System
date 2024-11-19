@@ -38,7 +38,7 @@ public class PatronManagementPanel extends JPanel {
     }
 
     private void loadPatrons() {
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/library", "root", "Dhriti@2604");
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/library", "root", "password");
                 PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM patrons");
                 ResultSet rs = pstmt.executeQuery()) {
             tableModel.setRowCount(0);
@@ -62,7 +62,7 @@ public class PatronManagementPanel extends JPanel {
             JOptionPane.showMessageDialog(this, "Please fill in all the details");
             return;
         }
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/library", "root", "Dhriti@2604"); PreparedStatement pstmt = conn.prepareStatement("INSERT INTO patrons (patron_id, name, borrowed_books) VALUES (?, ?, ?)")) {
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/library", "root", "password"); PreparedStatement pstmt = conn.prepareStatement("INSERT INTO patrons (patron_id, name, borrowed_books) VALUES (?, ?, ?)")) {
             pstmt.setString(1, patronId);
             pstmt.setString(2, name);
             pstmt.setString(3, "");
@@ -86,7 +86,7 @@ public class PatronManagementPanel extends JPanel {
             JOptionPane.showMessageDialog(this, "Name cannot be empty");
             return;
         }
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/library", "root", "Dhriti@2604"); PreparedStatement pstmt = conn.prepareStatement("UPDATE patrons SET name = ? WHERE patron_id = ?")) {
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/library", "root", "password"); PreparedStatement pstmt = conn.prepareStatement("UPDATE patrons SET name = ? WHERE patron_id = ?")) {
             pstmt.setString(1, name);
             pstmt.setString(2, patronId);
             pstmt.executeUpdate();
@@ -104,7 +104,7 @@ public class PatronManagementPanel extends JPanel {
             return;
         }
         String patronId = (String) tableModel.getValueAt(selectedRow, 0);
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/library", "root", "Dhriti@2604"); PreparedStatement pstmt = conn.prepareStatement("DELETE FROM patrons WHERE patron_id = ?")) {
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/library", "root", "password"); PreparedStatement pstmt = conn.prepareStatement("DELETE FROM patrons WHERE patron_id = ?")) {
             pstmt.setString(1, patronId);
             pstmt.executeUpdate();
             JOptionPane.showMessageDialog(this, "Patron deleted successfully");

@@ -52,7 +52,7 @@ public class BookManagementPanel extends JPanel {
         String title = titleField.getText();
         String author = authorField.getText();
         String isbn = isbnField.getText();
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/library", "root", "Dhriti@2604"); PreparedStatement pstmt = conn.prepareStatement("INSERT INTO books (isbn, title, author) VALUES (?, ?, ?)")) {
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/library", "root", "password"); PreparedStatement pstmt = conn.prepareStatement("INSERT INTO books (isbn, title, author) VALUES (?, ?, ?)")) {
             pstmt.setString(1, isbn);
             pstmt.setString(2, title);
             pstmt.setString(3, author);
@@ -73,7 +73,7 @@ public class BookManagementPanel extends JPanel {
         String isbn = bookTable.getValueAt(selectedRow, 2).toString();
         String title = titleField.getText();
         String author = authorField.getText();
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/library", "root", "Dhriti@2604"); PreparedStatement pstmt = conn.prepareStatement("UPDATE books SET title = ?, author = ?, WHERE isbn = ?")) {
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/library", "root", "password"); PreparedStatement pstmt = conn.prepareStatement("UPDATE books SET title = ?, author = ?, WHERE isbn = ?")) {
             pstmt.setString(1, title);
             pstmt.setString(2, author);
             pstmt.setString(3, isbn);
@@ -96,7 +96,7 @@ public class BookManagementPanel extends JPanel {
         String isbn = bookTable.getValueAt(selectedRow, 2).toString();
         int confirm = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this book?");
         if(confirm != JOptionPane.YES_OPTION) return;
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/library", "root", "Dhriti@2604"); PreparedStatement pstmt = conn.prepareStatement("DELETE FROM books WHERE isbn = ?")) {
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/library", "root", "password"); PreparedStatement pstmt = conn.prepareStatement("DELETE FROM books WHERE isbn = ?")) {
             pstmt.setString(1, isbn);
             int rowsDeleted = pstmt.executeUpdate();
             if(rowsDeleted > 0) {
@@ -109,7 +109,7 @@ public class BookManagementPanel extends JPanel {
         }
     }
     private void loadBooks() {
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/library", "root", "Dhriti@2604"); PreparedStatement pstmt = conn.prepareStatement("SELECT title, author, isbn, availability FROM books"); ResultSet rs = pstmt.executeQuery()) {
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/library", "root", "password"); PreparedStatement pstmt = conn.prepareStatement("SELECT title, author, isbn, availability FROM books"); ResultSet rs = pstmt.executeQuery()) {
             String[] columnNames = {"Title", "Author", "ISBN", "Availability"};
             DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
             while(rs.next()) {

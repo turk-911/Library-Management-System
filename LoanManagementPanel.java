@@ -12,7 +12,7 @@ public class LoanManagementPanel extends JPanel {
     private Connection conn;
     private static final String DB_URL = "jdbc:mysql://localhost:3306/library";
     private static final String DB_USER = "root";
-    private static final String DB_PASSWORD = "Dhriti@2604";
+    private static final String DB_PASSWORD = "password";
     public LoanManagementPanel() {
         setLayout(new BorderLayout());
         JLabel titleLabel = new JLabel("Loan Management");
